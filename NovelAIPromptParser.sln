@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelAIPromptParser", "NovelAIPromptParser\NovelAIPromptParser.csproj", "{42DB81A8-535C-4D0D-9FBB-42B94E908E4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovelAIPromptParserTest", "NovelAIPromptParserTest\NovelAIPromptParserTest.csproj", "{139DA8EF-D2C1-471C-A73A-514272861185}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{42DB81A8-535C-4D0D-9FBB-42B94E908E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42DB81A8-535C-4D0D-9FBB-42B94E908E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42DB81A8-535C-4D0D-9FBB-42B94E908E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{139DA8EF-D2C1-471C-A73A-514272861185}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{139DA8EF-D2C1-471C-A73A-514272861185}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{139DA8EF-D2C1-471C-A73A-514272861185}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{139DA8EF-D2C1-471C-A73A-514272861185}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

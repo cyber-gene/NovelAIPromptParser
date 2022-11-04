@@ -1,16 +1,59 @@
 ﻿namespace NovelAIPromptParser.Entity;
 
-public class Prompt
+public class ParseResult
 {
     /// <summary>
     /// Prompt string
     /// </summary>
-    public string Raw { get; set; } = string.Empty;
+    public string Prompt { get; set; } = string.Empty;
+    
+    /// <summary>
+    /// Image height
+    /// </summary>
+    public int Height { get; set; } = 0;
+    
+    /// <summary>
+    /// Image width
+    /// </summary>
+    public int Width { get; set; } = 0;
+    
+    /// <summary>
+    /// Image seed
+    /// </summary>
+    public string Seed { get; set; } = string.Empty;
 
     /// <summary>
-    /// List of Tag
+    /// Steps
     /// </summary>
-    public List<Tag> Tags { get; set; } = new List<Tag>();
-
-    public List<Tag> NegativeTags { get; set; } = new List<Tag>();
+    public decimal Steps { get; set; } = 0;
+    
+    /// <summary>
+    /// Sampler
+    /// </summary>
+    public string Sampler { get; set; } = string.Empty;
+    
+    /// <summary>
+    /// Strength
+    /// </summary>
+    public decimal Strength { get; set; } = 0;
+    
+    /// <summary>
+    /// Noise
+    /// </summary>
+    public decimal Noise { get; set; } = 0;
+    
+    /// <summary>
+    /// Scale
+    /// </summary>
+    public decimal Scale { get; set; } = 0;
+    
+    /// <summary>
+    /// Undesired content
+    /// </summary>
+    public string UndesiredContent { get; set; } = string.Empty;
+    
+    /// <summary>
+    /// Result message
+    /// </summary>
+    public string Message { get; set; }
 }
