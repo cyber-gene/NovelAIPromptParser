@@ -52,8 +52,4 @@ public class ParseResult
     /// </summary>
     public string UndesiredContent { get; set; } = string.Empty;
     
-    /// <summary>
-    /// Result message
-    /// </summary>
-    public string Message { get; set; }
 }
