@@ -4,6 +4,15 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>NovelAIPromptParser</Title>
+        <Authors>cybergene</Authors>
+        <Description>Load NovelAI prompt and settings from image files </Description>
+        <Copyright>Copyright (c) 2022 cybergene</Copyright>
+        <PackageProjectUrl>https://github.com/cyber-gene/NovelAIPromptParser</PackageProjectUrl>
+        <PackageLicenseUrl></PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/cyber-gene/NovelAIPromptParser</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>
