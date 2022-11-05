@@ -11,7 +11,7 @@ public class ParserTest
     [TestMethod]
     public void LoadFromFile()
     {
-        const string path = @".\TestData\Normal.png";
+        const string path = @"TestData/Normal.png";
         var r = Parser.ParseImage(path);
         AssertNormalImage(r);
     }
@@ -22,7 +22,7 @@ public class ParserTest
     [TestMethod]
     public void LoadFromStream()
     {
-        const string path = @".\TestData\Normal.png";
+        const string path = @"TestData/Normal.png";
         var s = new FileStream(path, FileMode.Open);
         var r = Parser.ParseImage(s);
         AssertNormalImage(r);
@@ -114,7 +114,7 @@ public class ParserTest
     [TestMethod]
     public void MetadataNotFound()
     {
-        const string path = @".\TestData\MetadataRemoved.png";
+        const string path = @"TestData/MetadataRemoved.png";
         var e = Assert.ThrowsException<ParserException>(() =>
         {
             Parser.ParseImage(path);
@@ -129,7 +129,7 @@ public class ParserTest
     [TestMethod]
     public void NotImageFile()
     {
-        const string path = @"TestData\NotImageFile.txt";
+        const string path = @"TestData/NotImageFile.txt";
         var e = Assert.ThrowsException<ParserException>(() =>
         {
             Parser.ParseImage(path);    
@@ -143,7 +143,7 @@ public class ParserTest
     [TestMethod]
     public void NotImageStream()
     {
-        const string path = @"TestData\NotImageFile.txt";
+        const string path = @"TestData/NotImageFile.txt";
         var fs = new FileStream(path, FileMode.Open);
         var e = Assert.ThrowsException<ParserException>(() =>
         {
