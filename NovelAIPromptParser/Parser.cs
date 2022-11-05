@@ -44,7 +44,7 @@ public static class Parser
         }
         
     }
-
+    
     /// <summary>
     /// Get NovelAI settings from image
     /// </summary>
@@ -75,6 +75,9 @@ public static class Parser
                 Height = image.Height,
                 Width = image.Width,
             };
+            
+            // split prompt
+            result.Tags = ParsePrompt(result.Prompt);
 
             if (commentDic == null) return result;
             
@@ -85,6 +88,9 @@ public static class Parser
             if (decimal.TryParse(commentDic["noise"], out var noise)) result.Noise = noise;
             if (decimal.TryParse(commentDic["scale"], out var scale)) result.Scale = scale;
             result.UndesiredContent = commentDic["uc"];
+            
+            // split undesired content
+            result.NegativeTags = ParsePrompt(result.UndesiredContent);
 
             return result;
         }
@@ -97,5 +103,21 @@ public static class Parser
             throw new ParserException("An error has occurred.", e);
         }
         
+    }
+
+    /// <summary>
+    /// Parse prompt string
+    /// </summary>
+    /// <param name="prompt"></param>
+    /// <returns>List of <see cref="Tag"/></returns>
+    public static List<Tag> ParsePrompt(string prompt)
+    {
+        return prompt.Split(',').Select(t => new Tag()
+        {
+            Raw = t.Trim(),
+            Word = t.Trim().Replace("{", "").Replace("}", "").Replace("[", "").Replace("]", ""),
+            Strength = t.Contains('{') ? t.Count(c => c == '{') : t.Count(c => c == '[') * -1,
+        }).ToList();
+
     }
 }
