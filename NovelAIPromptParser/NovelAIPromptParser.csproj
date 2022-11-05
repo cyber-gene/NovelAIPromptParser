@@ -14,8 +14,8 @@
         <RepositoryUrl>https://github.com/cyber-gene/NovelAIPromptParser</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageVersion>1.0.1</PackageVersion>
-        <PackageReleaseNotes>add README.md</PackageReleaseNotes>
+        <PackageVersion>1.1.0</PackageVersion>
+        <PackageReleaseNotes>Implement prompt string parsing.</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>

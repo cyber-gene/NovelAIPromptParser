@@ -6,7 +6,15 @@ public class ParseResult
     /// Prompt string
     /// </summary>
     public string Prompt { get; set; } = string.Empty;
-    
+
+    /// <summary>
+    /// List of Tag
+    /// </summary>
+    /// <remarks>
+    /// <see cref="Prompt"/> split by comma.
+    /// </remarks>
+    public List<Tag> Tags { get; set; } = new();
+
     /// <summary>
     /// Image height
     /// </summary>
@@ -51,5 +59,13 @@ public class ParseResult
     /// Undesired content
     /// </summary>
     public string UndesiredContent { get; set; } = string.Empty;
-    
+
+    /// <summary>
+    /// NegativeTags
+    /// </summary>
+    /// <remarks>
+    /// <see cref="UndesiredContent"/> split by comma.
+    /// </remarks>
+    public List<Tag> NegativeTags { get; set; } = new();
+
 }
