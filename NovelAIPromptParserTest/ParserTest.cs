@@ -68,12 +68,15 @@ public class ParserTest
 
     }
 
+    /// <summary>
+    /// deserialize prompt
+    /// </summary>
     [TestMethod]
-    public void ParsePrompt()
+    public void DeserializePrompt()
     {
         const string prompt = "{male}, short hair, jacket, street, [very short hair],";
 
-        var tags = Parser.ParsePrompt(prompt);
+        var tags = Parser.DeserializePrompt(prompt);
 
         var expectedTags = prompt.Split(',').Select(s => s.Trim());
 
@@ -84,6 +87,25 @@ public class ParserTest
             Assert.AreEqual(expected.Any(c => c == '{') ? expected.Count(c => c == '{') : expected.Count(c => c == '[') * -1, tag.Strength);
             Assert.AreEqual(expected.Replace("{","").Replace("}","").Replace("[","").Replace("]",""), tag.Word);
         }
+    }
+
+    /// <summary>
+    /// serialize prompt
+    /// </summary>
+    [TestMethod]
+    public void SerializePrompt()
+    {
+        var tags = new List<Tag>
+        {
+            new() { Word = "male", Strength = 1 },
+            new() { Word = "short hair", Strength = 0 },
+            new() { Word = "very short hair", Strength = -1 }
+        };
+
+        var prompt = Parser.SerializePrompt(tags);
+
+        const string excepted = "{male}, short hair, [very short hair], ";
+        Assert.AreEqual(excepted, prompt);
     }
 
     /// <summary>

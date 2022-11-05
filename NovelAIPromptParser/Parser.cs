@@ -77,7 +77,7 @@ public static class Parser
             };
             
             // split prompt
-            result.Tags = ParsePrompt(result.Prompt);
+            result.Tags = DeserializePrompt(result.Prompt);
 
             if (commentDic == null) return result;
             
@@ -90,7 +90,7 @@ public static class Parser
             result.UndesiredContent = commentDic["uc"];
             
             // split undesired content
-            result.NegativeTags = ParsePrompt(result.UndesiredContent);
+            result.NegativeTags = DeserializePrompt(result.UndesiredContent);
 
             return result;
         }
@@ -106,11 +106,11 @@ public static class Parser
     }
 
     /// <summary>
-    /// Parse prompt string
+    /// Deserialize prompt string
     /// </summary>
     /// <param name="prompt"></param>
     /// <returns>List of <see cref="Tag"/></returns>
-    public static List<Tag> ParsePrompt(string prompt)
+    public static List<Tag> DeserializePrompt(string prompt)
     {
         return prompt.Split(',').Select(t => new Tag()
         {
@@ -119,5 +119,23 @@ public static class Parser
             Strength = t.Contains('{') ? t.Count(c => c == '{') : t.Count(c => c == '[') * -1,
         }).ToList();
 
+    }
+
+    /// <summary>
+    /// Serialize prompt string
+    /// </summary>
+    /// <param name="tags">List of <see cref="Tag"/></param>
+    /// <returns>Prompt string</returns>
+    public static string SerializePrompt(List<Tag> tags)
+    {
+        var prompt = string.Empty;
+        foreach (var tag in tags)
+        {
+            var brackets = tag.Strength >= 0 ? new[] { '{', '}' } : new[] { '[', ']' };
+            prompt +=
+                $"{new string(brackets[0], Math.Abs(tag.Strength))}{tag.Word}{new string(brackets[1], Math.Abs(tag.Strength))}, ";
+        }
+
+        return prompt;
     }
 }
