@@ -8,7 +8,7 @@ public class Tag
     /// <remarks>
     /// Include {} and []
     /// </remarks>
-    public string Raw { get; set; }
+    public string Raw { get; set; } = string.Empty;
     
     /// <summary>
     /// Tag word
