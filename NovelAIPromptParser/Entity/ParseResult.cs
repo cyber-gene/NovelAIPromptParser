@@ -18,12 +18,12 @@ public class ParseResult
     /// <summary>
     /// Image height
     /// </summary>
-    public int Height { get; set; } = 0;
+    public int Height { get; set; }
     
     /// <summary>
     /// Image width
     /// </summary>
-    public int Width { get; set; } = 0;
+    public int Width { get; set; }
     
     /// <summary>
     /// Image seed
@@ -33,7 +33,7 @@ public class ParseResult
     /// <summary>
     /// Steps
     /// </summary>
-    public decimal Steps { get; set; } = 0;
+    public decimal Steps { get; set; }
     
     /// <summary>
     /// Sampler
@@ -43,17 +43,17 @@ public class ParseResult
     /// <summary>
     /// Strength
     /// </summary>
-    public decimal Strength { get; set; } = 0;
+    public decimal Strength { get; set; }
     
     /// <summary>
     /// Noise
     /// </summary>
-    public decimal Noise { get; set; } = 0;
+    public decimal Noise { get; set; }
     
     /// <summary>
     /// Scale
     /// </summary>
-    public decimal Scale { get; set; } = 0;
+    public decimal Scale { get; set; }
     
     /// <summary>
     /// Undesired content
