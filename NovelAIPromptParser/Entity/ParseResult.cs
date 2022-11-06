@@ -14,6 +14,14 @@ public class ParseResult
     /// <see cref="Prompt"/> split by comma.
     /// </remarks>
     public List<Tag> Tags { get; set; } = new();
+    
+    /// <summary>
+    /// Prompt exists Quality tags
+    /// </summary>
+    /// <remarks>
+    /// true when "Add Quality Tags" checked.
+    /// </remarks>
+    public bool ExistQualityTags { get; set; }
 
     /// <summary>
     /// Image height

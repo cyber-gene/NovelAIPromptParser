@@ -7,6 +7,14 @@ namespace NovelAIPromptParser;
 public static class Parser
 {
     /// <summary>
+    /// Quality tags
+    /// </summary>
+    /// <remarks>
+    /// Tags assigned when "Add Quality Tags" is checked.
+    /// </remarks>
+    public static readonly string[] QualityTags = { "masterpiece", "best quality" };
+    
+    /// <summary>
     /// Parse image from file.
     /// </summary>
     /// <param name="path">File Path</param>
@@ -79,6 +87,11 @@ public static class Parser
             // split prompt
             result.Tags = DeserializePrompt(result.Prompt);
 
+            if (result.Tags.Any(t => t.Word == QualityTags[0]) && result.Tags.Any(t => t.Word == QualityTags[1]))
+            {
+                result.ExistQualityTags = true;
+            }
+            
             if (commentDic == null) return result;
             
             result.Seed = commentDic["seed"];
