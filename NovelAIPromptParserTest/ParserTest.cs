@@ -50,6 +50,11 @@ public class ParserTest
             
         }
         
+        // assert quality tags
+        Assert.IsTrue(r.Tags.Any(t => t.Word == Parser.QualityTags[0]));
+        Assert.IsTrue(r.Tags.Any(t => t.Word == Parser.QualityTags[1]));
+        Assert.IsTrue(r.ExistQualityTags);
+        
         // assert image resolution
         Assert.AreEqual(512, r.Width);
         Assert.AreEqual(768, r.Height);
