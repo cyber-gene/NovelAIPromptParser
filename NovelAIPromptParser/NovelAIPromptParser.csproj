@@ -14,10 +14,10 @@
         <RepositoryUrl>https://github.com/cyber-gene/NovelAIPromptParser</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageVersion>1.2.0</PackageVersion>
-        <PackageReleaseNotes>Implement serialize / deserialize prompt.</PackageReleaseNotes>
-        <AssemblyVersion>1.2.0.0</AssemblyVersion>
-        <FileVersion>1.2.0.0</FileVersion>
+        <PackageVersion>1.2.1</PackageVersion>
+        <PackageReleaseNotes>See https://github.com/cyber-gene/NovelAIPromptParser/releases</PackageReleaseNotes>
+        <AssemblyVersion>1.2.1.0</AssemblyVersion>
+        <FileVersion>1.2.1.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
