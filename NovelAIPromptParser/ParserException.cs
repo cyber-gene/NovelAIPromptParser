@@ -1,5 +1,4 @@
 ﻿using System.Runtime.Serialization;
-using NovelAIPromptParser.Entity;
 
 namespace NovelAIPromptParser;
 
