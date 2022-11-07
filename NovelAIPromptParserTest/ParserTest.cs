@@ -1,4 +1,5 @@
 using NovelAIPromptParser.Entity;
+using SixLabors.ImageSharp;
 
 namespace NovelAIPromptParserTest;
 
@@ -153,6 +154,19 @@ public class ParserTest
         // assert image resolution
         Assert.AreEqual(512, r.Width);
         Assert.AreEqual(768, r.Height);
+    }
+
+    /// <summary>
+    /// image is not png file
+    /// </summary>
+    [TestMethod]
+    public void NotPngImage()
+    {
+        var e = Assert.ThrowsException<ParserException>(() =>
+        {
+            Parser.ParseImage("TestData/NotPngImage.jpg");
+        });
+        Assert.AreEqual("Metadata is not found.", e.Message);
     }
 
     /// <summary>
