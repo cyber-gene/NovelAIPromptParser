@@ -114,6 +114,28 @@ public class ParserTest
     }
 
     /// <summary>
+    /// image without comment of png metadata
+    /// </summary>
+    [TestMethod]
+    public void ImageCommentMissing()
+    {
+        const string path = @"TestData/WithoutComment.png";
+        var r = Parser.ParseImage(path);
+        
+        // assert tags
+        var exceptedTags = new[] { "{male}", "short hair", "jacket", "street" };
+        foreach (var tag in exceptedTags)
+        {
+            var word = tag.Replace("{", "").Replace("}", "");
+            Assert.IsTrue(r.Tags.Any(t => t.Word == word));
+        }
+        
+        // assert image resolution
+        Assert.AreEqual(512, r.Width);
+        Assert.AreEqual(768, r.Height);
+    }
+
+    /// <summary>
     /// metadata not include
     /// </summary>
     [TestMethod]
