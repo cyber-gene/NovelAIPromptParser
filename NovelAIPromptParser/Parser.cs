@@ -64,10 +64,7 @@ public static class Parser
         try
         {
             var meta = image.Metadata;
-            if (meta == null) throw new ParserException("Metadata is not found.");
-            
             var pngMeta = meta.GetPngMetadata();
-            if (pngMeta == null) throw new ParserException("Metadata is not found.");
             if (!pngMeta.TextData.Any()) throw new ParserException("Metadata is not found.");
             
             // description contains prompt
