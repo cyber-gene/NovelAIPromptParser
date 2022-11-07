@@ -1,6 +1,3 @@
-using NovelAIPromptParser.Entity;
-using SixLabors.ImageSharp;
-
 namespace NovelAIPromptParserTest;
 
 /// <summary>
