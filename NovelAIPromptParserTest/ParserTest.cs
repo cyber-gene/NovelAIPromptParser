@@ -1,18 +1,41 @@
 using NovelAIPromptParser.Entity;
+using SixLabors.ImageSharp;
 
 namespace NovelAIPromptParserTest;
 
+/// <summary>
+/// Testing <see cref="Parser"/>
+/// </summary>
 [TestClass]
 public class ParserTest
 {
+    /// <summary>
+    /// Success pattern image file path
+    /// </summary>
+    private const string NormalPngPath = @"TestData/Normal.png";
+    
+    /// <summary>
+    /// Metadata removed image file path
+    /// </summary>
+    private const string MetadataRemovedPngPath = @"TestData/MetadataRemoved.png";
+    
+    /// <summary>
+    /// Not image file path
+    /// </summary>
+    private const string NotImageFilePath = @"TestData/NotImageFile.txt";
+    
+    /// <summary>
+    /// png metadata comment removed image file path
+    /// </summary>
+    private const string CommentRemovedPngPath = @"TestData/WithoutComment.png";
+    
     /// <summary>
     /// parse from image file
     /// </summary>
     [TestMethod]
     public void LoadFromFile()
     {
-        const string path = @"TestData/Normal.png";
-        var r = Parser.ParseImage(path);
+        var r = Parser.ParseImage(NormalPngPath);
         AssertNormalImage(r);
     }
 
@@ -22,8 +45,7 @@ public class ParserTest
     [TestMethod]
     public void LoadFromStream()
     {
-        const string path = @"TestData/Normal.png";
-        var s = new FileStream(path, FileMode.Open);
+        var s = new FileStream(NormalPngPath, FileMode.Open);
         var r = Parser.ParseImage(s);
         AssertNormalImage(r);
     }
@@ -114,15 +136,48 @@ public class ParserTest
     }
 
     /// <summary>
+    /// image without comment of png metadata
+    /// </summary>
+    [TestMethod]
+    public void ImageCommentMissing()
+    {
+        var r = Parser.ParseImage(CommentRemovedPngPath);
+        
+        // assert tags
+        var exceptedTags = new[] { "{male}", "short hair", "jacket", "street" };
+        foreach (var tag in exceptedTags)
+        {
+            var word = tag.Replace("{", "").Replace("}", "");
+            Assert.IsTrue(r.Tags.Any(t => t.Word == word));
+        }
+        
+        // assert image resolution
+        Assert.AreEqual(512, r.Width);
+        Assert.AreEqual(768, r.Height);
+    }
+
+    /// <summary>
+    /// image is not png file
+    /// </summary>
+    [TestMethod]
+    public void NotPngImage()
+    {
+        var e = Assert.ThrowsException<ParserException>(() =>
+        {
+            Parser.ParseImage("TestData/NotPngImage.jpg");
+        });
+        Assert.AreEqual("Metadata is not found.", e.Message);
+    }
+
+    /// <summary>
     /// metadata not include
     /// </summary>
     [TestMethod]
     public void MetadataNotFound()
     {
-        const string path = @"TestData/MetadataRemoved.png";
         var e = Assert.ThrowsException<ParserException>(() =>
         {
-            Parser.ParseImage(path);
+            Parser.ParseImage(MetadataRemovedPngPath);
         });
         
         Assert.AreEqual("Metadata is not found.", e.Message);
@@ -134,10 +189,9 @@ public class ParserTest
     [TestMethod]
     public void NotImageFile()
     {
-        const string path = @"TestData/NotImageFile.txt";
         var e = Assert.ThrowsException<ParserException>(() =>
         {
-            Parser.ParseImage(path);    
+            Parser.ParseImage(NotImageFilePath);    
         });
         Assert.AreEqual("Not supported image.", e.Message);
     }
@@ -148,8 +202,7 @@ public class ParserTest
     [TestMethod]
     public void NotImageStream()
     {
-        const string path = @"TestData/NotImageFile.txt";
-        var fs = new FileStream(path, FileMode.Open);
+        var fs = new FileStream(NotImageFilePath, FileMode.Open);
         var e = Assert.ThrowsException<ParserException>(() =>
         {
             Parser.ParseImage(fs);

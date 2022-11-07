@@ -64,10 +64,7 @@ public static class Parser
         try
         {
             var meta = image.Metadata;
-            if (meta == null) throw new ParserException("Metadata is not found.");
-            
             var pngMeta = meta.GetPngMetadata();
-            if (pngMeta == null) throw new ParserException("Metadata is not found.");
             if (!pngMeta.TextData.Any()) throw new ParserException("Metadata is not found.");
             
             // description contains prompt
@@ -75,7 +72,8 @@ public static class Parser
             
             // comment contains model-specific settings
             var comment = pngMeta.TextData.FirstOrDefault(m => m.Keyword == "Comment");
-            var commentDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(comment.Value);
+            Dictionary<string, string>? commentDic = null;
+            if (comment.Value != null) commentDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(comment.Value);
 
             var result = new ParseResult()
             {
