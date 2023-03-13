@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using SixLabors.ImageSharp;
 using NovelAIPromptParser.Entity;
 
 namespace NovelAIPromptParser;
@@ -59,7 +58,7 @@ public static class Parser
     /// <param name="image"></param>
     /// <returns></returns>
     /// <exception cref="ParserException"></exception>
-    private static ParseResult GetMetaData(IImageInfo image)
+    private static ParseResult GetMetaData(Image image)
     {
         try
         {
