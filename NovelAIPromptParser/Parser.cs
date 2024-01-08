@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NovelAIPromptParser.Entity;
+using SixLabors.ImageSharp;
 
 namespace NovelAIPromptParser;
 
